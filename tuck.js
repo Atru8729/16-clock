@@ -4,11 +4,17 @@ Arejuje nurodyta, kiek sekundziu reikia laukti, kol bus isspausdinta nurodyta re
 */
 
 const a = [2, 3, 1, 4, 2];
-let waitingTime = 0;
 
-for (const number of a) {
-    waitingTime += number;
+function waiting(list) {
+    const time = list[0];
     setTimeout(() => {
-        console.log(number);
-    }, waitingTime * 1000)
+        console.log(time);
+        list.shift()
+
+        if (list.length > 0) {
+            waiting(list);
+        }
+    }, time * 1000)
 }
+
+waiting(a);
